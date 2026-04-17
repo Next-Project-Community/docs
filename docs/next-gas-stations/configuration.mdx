@@ -1,0 +1,143 @@
+---
+sidebar_position: 3
+---
+
+# Configuration
+
+All configuration is done in `config/shared.lua`.
+
+## General
+
+```lua
+Language  = 'auto'   -- 'auto' | 'en' | 'fr'
+Debug     = true     -- Enable debug logs
+Framework = {
+    Force     = nil, -- nil = auto-detect | 'qbox' | 'qbcore' | 'esx'
+    Supported = { 'qbox', 'qbcore', 'esx' }
+}
+```
+
+## Database
+
+```lua
+Database = {
+    AutoCreateTables = true  -- Automatically create tables on startup
+}
+```
+
+## General stations
+
+```lua
+General = {
+    MaxStationsPerPlayer    = 1,        -- Max stations owned per player
+    DeliveryDelaySeconds    = 7200,     -- Delay between fuel orders (seconds)
+    FuelOrderMin            = 100,      -- Min fuel quantity per order
+    FuelOrderMax            = 2000,     -- Max fuel quantity per order
+    FuelImportPricePerUnit  = 0.5,      -- Fuel purchase price per unit
+    FuelSalePricePerUnit    = 3,        -- Default sale price per unit
+    DefaultFuelCapacity     = 10000,    -- Default tank capacity
+    InteractionDistance     = 3.0,      -- Interaction range (metres)
+}
+```
+
+## Next Deliveries integration
+
+```lua
+DeliveryIntegration = {
+    Enabled             = true,
+    ResourceName        = 'next-deliveries',
+    DepotIndex          = 1,
+    PickupLabel         = 'Fuel Supplier Depot',
+    PickupCoords        = nil,                    -- nil = use depot coords
+    DeliveryLabelPrefix = 'Fuel restock - ',
+    ApiMissionCategory  = 'fuel',
+    ApiSource           = 'next_gas_stations',
+    ApiReward           = 20,
+}
+```
+
+## Fuel integration
+
+```lua
+FuelIntegration = {
+    Enabled              = true,
+    Provider             = 'auto',   -- 'auto' | 'ox_fuel' | 'qb-fuel'
+    StrictProvider       = false,
+    PaymentAccount       = 'bank',
+    StationMatchDistance = 25.0,     -- Station match range (metres)
+    PricePerUnit         = 3,
+    OxFuelRefillValue    = 0.50,
+    OxFuelPriceTick      = 5,
+    FallbackEventEnabled = false,
+}
+```
+
+## Blips
+
+```lua
+Blips = {
+    Enabled = true,
+    Sprite  = 361,
+    Color   = 41,
+    Scale   = 0.6,
+    Name    = 'Gas Station',
+}
+```
+
+## Station types
+
+```lua
+StationTypes = {
+    small_gas_station = {
+        fuel_capacity = 10000,
+        shop_capacity = 500,
+    }
+}
+```
+
+## Shop
+
+```lua
+Shop = {
+    DefaultItems = {
+        { item = 'water',    stock = 50, price = 15 },
+        { item = 'sandwich', stock = 50, price = 25 },
+    },
+    RefillCostPerItem           = 5,
+    RefillMarginPercent         = 15,
+    LoadFromOxInventory         = true,
+    OxInventoryShops            = { 'General' },
+    OxInventoryItemDefaultPrice = 100,
+}
+```
+
+## Stations
+
+Each station must have an entry in the `Stations` table:
+
+```lua
+Stations = {
+    [1] = {
+        key               = 'Pillbox Hill Gas Station',
+        type              = 'small_gas_station',
+        buy_price         = 800000,
+        coord             = vector3(289.27, -1267.01, 29.45),
+        deliveryman_coord = vector3(288.56, -1269.86, 29.45),
+        map_blip_coord    = vector3(289.27, -1267.01, 29.45),
+    },
+    -- ...
+}
+```
+
+| Field | Description |
+|-------|-------------|
+| `key` | Unique station identifier |
+| `type` | Station type (must exist in `StationTypes`) |
+| `buy_price` | Purchase price of the station |
+| `coord` | Main interaction position |
+| `deliveryman_coord` | Delivery drop-off position |
+| `map_blip_coord` | Blip position on the map |
+
+:::tip
+The default config includes **27 pre-configured stations** across Los Santos and Blaine County.
+:::

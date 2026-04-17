@@ -1,0 +1,94 @@
+---
+sidebar_position: 4
+---
+
+# API
+
+`next_deliveries` exposes server exports so other resources can inject delivery missions.
+
+## Available exports
+
+### `CreateMission` / `AddMission`
+
+Creates a new pending mission in the global API pool.  
+`CreateMission` and `AddMission` are aliases — they behave identically.
+
+```lua
+local ok, result = exports['next_deliveries']:CreateMission(payload)
+-- ok == true  → result is the missionId (number)
+-- ok == false → result is an error code (string)
+```
+
+---
+
+### `RemoveMission`
+
+Cancels a **pending** mission (not yet claimed) by its ID.
+
+```lua
+local removed = exports['next_deliveries']:RemoveMission(missionId)
+-- removed == true  → mission cancelled
+-- removed == false → invalid ID, not found, or already claimed/cancelled
+```
+
+---
+
+### `CancelMission`
+
+Cancels an **active** mission (from `next_delivery_missions`) by its ID.
+
+```lua
+local ok, result = exports['next_deliveries']:CancelMission(missionId, fuelLevel)
+-- ok == true  → result is the missionId
+-- ok == false → result is 'invalid_mission_id' | 'mission_not_found'
+
+-- Alternative payload form:
+local ok, result = exports['next_deliveries']:CancelMission({
+    missionId = missionId,
+    fuelLevel = 73.5,
+})
+```
+
+---
+
+### `CompleteMission`
+
+Completes an active mission and credits the reward to the company account.
+
+```lua
+local ok, result = exports['next_deliveries']:CompleteMission(missionId)
+-- ok == true  → result is the missionId
+-- ok == false → result is 'invalid_mission_id' | 'mission_not_found'
+```
+
+---
+
+## Payload
+
+```lua
+{
+    -- Fallback depot index (used when pickupCoords is omitted):
+    depotIndex = 1,
+
+    -- Route:
+    pickupLabel  = 'Warehouse A',
+    pickupCoords = { x = 123.0, y = 456.0, z = 32.0 }, -- optional
+    deliveryLabel  = 'LTD - Downtown',
+    deliveryCoords = { x = 12.0, y = -321.0, z = 29.0 }, -- required
+
+    -- Mission meta:
+    category  = 'fuel',           -- 'fuel' | 'goods' (default: goods)
+    reward    = 650,              -- optional (random if omitted)
+    apiSource = 'my_resource',    -- optional (defaults to invoking resource)
+}
+```
+
+---
+
+## Important rules
+
+- API missions are injected into the **shared global pool** visible to all companies.
+- **First come, first served**: the first company to start a mission claims it.
+- XL truck rule:
+  - XL trucks can only run `fuel` missions.
+  - Non-XL trucks cannot start `fuel` missions.

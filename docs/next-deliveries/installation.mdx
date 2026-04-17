@@ -1,0 +1,55 @@
+﻿---
+sidebar_position: 2
+---
+
+# Installation
+
+## 1. Purchase the resource
+
+Next Deliveries is available exclusively on **Tebex**:
+
+👉 [next-project.tebex.io](https://next-project.tebex.io/)
+
+After purchase, the resource is available from your **CFX portal**: [portal.cfx.re](https://portal.cfx.re)
+
+## 2. Download and install
+
+1. Log in at [portal.cfx.re](https://portal.cfx.re)
+2. Go to **Granted Assets** and locate `next_deliveries`
+3. Download the archive and extract it into your `resources` folder:
+
+`
+resources/
+  next_deliveries/
+    fxmanifest.lua
+    config.lua
+    ...
+`
+
+:::caution
+The folder must be named **`next_deliveries`** (with underscore).
+:::
+
+## 3. Database
+
+Import the SQL file to create the required tables.
+The file is located at the root of the resource: `banking_seed_accounts.sql`.
+
+## 4. Add to `server.cfg`
+
+`cfg
+ensure ox_lib
+ensure oxmysql
+ensure next_deliveries
+`
+
+## 5. Configure
+
+Editable files (not escrow-protected):
+
+| File | Content |
+|------|---------|
+| `config.lua` | General settings (framework, locale, banking, garage) |
+| `config/client.lua` | Blips, visual markers |
+| `config/server.lua` | Rewards, creation cost, Discord webhook |
+| `locales/*.json` | Translations |

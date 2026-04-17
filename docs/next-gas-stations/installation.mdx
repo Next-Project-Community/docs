@@ -1,0 +1,79 @@
+﻿---
+sidebar_position: 2
+---
+
+# Installation
+
+## 1. Purchase the resource
+
+Next Gas Stations is available exclusively on **Tebex**:
+
+👉 [next-project.tebex.io](https://next-project.tebex.io/)
+
+After purchase, the resource is available from your **CFX portal**: [portal.cfx.re](https://portal.cfx.re)
+
+## 2. Download and install
+
+1. Log in at [portal.cfx.re](https://portal.cfx.re)
+2. Go to **Granted Assets** and locate `next_gas_stations`
+3. Download the archive and extract it into your `resources` folder:
+
+`
+resources/
+  next_gas_stations/
+    fxmanifest.lua
+    config.lua
+    ...
+`
+
+:::caution
+The folder must be named **`next_gas_stations`** (with underscore).
+:::
+
+## 3. Install the fuel fork
+
+Install the fork matching your framework into your `resources` folder:
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="qbox" label="Qbox / QboxCore" default>
+    `ash
+    git clone https://github.com/Destructor/ox_fuel ox_fuel
+    `
+  </TabItem>
+  <TabItem value="qbcore" label="QBCore">
+    `ash
+    git clone https://github.com/Destructor/qb-fuel qb-fuel
+    `
+  </TabItem>
+</Tabs>
+
+## 4. Database
+
+Table creation is **automatic** if `Database.AutoCreateTables = true` (enabled by default).
+
+## 5. Add to `server.cfg`
+
+`cfg
+ensure ox_lib
+ensure oxmysql
+ensure next_deliveries   # required if delivery integration is enabled
+ensure next_gas_stations
+
+# Only add the fork matching your framework:
+ensure ox_fuel   # Qbox
+# OR
+ensure qb-fuel   # QBCore
+`
+
+## 6. Configure
+
+Editable files (not escrow-protected):
+
+| File | Content |
+|------|---------|
+| `config/shared.lua` | Main configuration (stations, prices, shop…) |
+| `config/client.lua` | Client options |
+| `locales/*.json` | Translations |

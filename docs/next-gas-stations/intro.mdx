@@ -1,0 +1,45 @@
+---
+sidebar_position: 1
+---
+
+# Introduction
+
+**Next Gas Stations** is a multi-framework buyable gas station system for FiveM.  
+Players can purchase gas stations, order fuel, manage a shop, and sell fuel to other players.
+
+## Features
+
+- Buy and own gas stations
+- Fuel ordering (native integration with **Next Deliveries**)
+- Shop management (items, stock, prices)
+- Sell fuel to players via the fuel system
+- Configurable map blips
+- Compatible with **Qbox**, **QBCore**, **ESX**
+- Automatic SQL table creation
+
+## Resource name
+
+```
+next_gas_stations
+```
+
+## Dependencies
+
+| Resource | Required |
+|----------|----------|
+| [`ox_lib`](https://github.com/overextended/ox_lib) | ✅ |
+| [`oxmysql`](https://github.com/overextended/oxmysql) | ✅ |
+| [`next_deliveries`](../next-deliveries/intro) | ✅ (if delivery integration enabled) |
+
+## Fuel integration
+
+For full compatibility with the fuel system, you must use the **specific forks** for your framework:
+
+| Framework | Required fork |
+|-----------|---------------|
+| **Qbox / QboxCore** | [`Destructor/ox_fuel`](https://github.com/Destructor/ox_fuel) |
+| **QBCore** | [`Destructor/qb-fuel`](https://github.com/Destructor/qb-fuel) |
+
+:::warning
+Do **not** use the original `ox_fuel` / `qb-fuel` versions. Only start the fork matching your core — do not run both at the same time.
+:::

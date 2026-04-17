@@ -1,0 +1,94 @@
+---
+sidebar_position: 3
+---
+
+# Configuration
+
+## `config.lua` — General
+
+```lua
+Config.Debug       = false           -- Enable debug logs
+Config.Locale      = 'auto'          -- 'auto' | 'en' | 'fr'
+Config.Framework   = 'auto'          -- 'auto' | 'qbox' | 'qbcore' | 'esx'
+Config.UnemployedJob = 'unemployed'  -- Job assigned when an employee is fired
+Config.PlayerMoneyType = 'bank'      -- 'cash' | 'bank' | 'crypto'
+```
+
+### Company account prefix
+
+```lua
+Config.CompanyAccountPrefix = {
+    qbcore = '',         -- account name = <prefix><job_name>
+    qbox   = '',
+    esx    = 'society_', -- account name = society_<job_name>
+}
+```
+
+### Banking integration
+
+```lua
+Config.BankingIntegration = {
+    -- 'auto' | 'qb-banking' | 'renewed-banking' | 'esx_addonaccount' | 'custom'
+    provider = 'auto',
+}
+```
+
+### Garage integration
+
+```lua
+Config.GarageIntegration = {
+    -- 'auto' | 'native' | 'qb-garages' | 'qbx_garages' | 'esx_garage' | 'custom'
+    provider = 'auto',
+
+    -- Optional mapping per depot
+    depots = {
+        [1] = { qbGarage = 'dumbogarage',   qbxGarage = 'dumbogarage',   qbxAccessPoint = 1 },
+        [2] = { qbGarage = 'shoreparking',  qbxGarage = 'shoreparking',  qbxAccessPoint = 1 },
+        [3] = { qbGarage = 'haanparking',   qbxGarage = 'haanparking',   qbxAccessPoint = 1 },
+    },
+}
+```
+
+---
+
+## `config/server.lua` — Server
+
+```lua
+return {
+    DiscordWebhook = '',        -- Discord webhook URL ('' = disabled)
+    MaxEmployees   = 10,        -- Max employees per company (0 = unlimited)
+    CompanyCreationCost = 5000, -- Cost to create a company
+
+    -- Mission reward range
+    RewardMin = 200,
+    RewardMax = 800,
+
+    -- Reward multiplier by vehicle type
+    VehicleRewardMultiplier = {
+        small  = 1.0,
+        van    = 1.2,
+        medium = 1.5,
+        large  = 1.8,
+        xl     = 2.2,
+    },
+}
+```
+
+---
+
+## `config/client.lua` — Client (visuals)
+
+```lua
+return {
+    BlipDepot    = { sprite = 473, color = 2,  scale = 0.8 }, -- green
+    BlipDelivery = { sprite = 1,   color = 46, scale = 0.7 }, -- blue
+
+    Marker = {
+        type = 1,           -- cylinder
+        r = 255, g = 255, b = 255, a = 200,
+        size = vec3(2.0, 2.0, 1.0),
+    },
+
+    MarkerDrawDistance = 30.0, -- Marker visibility range (metres)
+}
+```
