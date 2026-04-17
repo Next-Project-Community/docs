@@ -2,6 +2,8 @@
   "label": "Next Gas Stations",
   "position": 3,
   "link": {
-    "type": "generated-index"
+    "type": "generated-index",
+    "title": "Next Gas Stations",
+    "description": "Installation and configuration guides for the Next Gas Stations FiveM plugin."
   }
 }

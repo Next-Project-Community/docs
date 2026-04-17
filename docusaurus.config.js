@@ -9,14 +9,14 @@ import {themes as prismThemes} from 'prism-react-renderer';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const [repoOwner, repoName] = (process.env.GITHUB_REPOSITORY ?? '').split('/');
-const organizationName = repoOwner || 'your-github-user';
-const projectName = repoName || 'next-project-community';
+const organizationName = repoOwner || 'Next-Project-Community';
+const projectName = repoName || 'Next-Project-Community';
 const isUserPage = projectName.toLowerCase() === `${organizationName.toLowerCase()}.github.io`;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Next Project Community',
+  tagline: 'Official documentation for FiveM plugins',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -71,17 +71,17 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'My Site',
+        title: 'Next Project Community',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Next Project Community Logo',
+          src: 'img/logo.png',
         },
         items: [
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Documentation',
+            label: 'Docs',
           },
           {
             href: `https://github.com/${organizationName}/${projectName}`,
@@ -103,11 +103,12 @@ const config = {
             ],
           },
           {
-            title: 'Projet',
+            title: 'Project',
             items: [
               {
                 label: 'GitHub',
-                href: `https://github.com/${organizationName}/${projectName}`,
+                //href: `https://github.com/${organizationName}/${projectName}`,
+                href: `https://github.com/${organizationName}/`,
               },
             ],
           },

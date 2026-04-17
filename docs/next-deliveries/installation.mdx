@@ -37,11 +37,11 @@ The file is located at the root of the resource: `banking_seed_accounts.sql`.
 
 ## 4. Add to `server.cfg`
 
-`cfg
+```cfg
 ensure ox_lib
 ensure oxmysql
 ensure next_deliveries
-`
+```
 
 ## 5. Configure
 
@@ -50,6 +50,6 @@ Editable files (not escrow-protected):
 | File | Content |
 |------|---------|
 | `config.lua` | General settings (framework, locale, banking, garage) |
-| `config/client.lua` | Blips, visual markers |
+| `config/client.lua` | Blips and visual markers |
 | `config/server.lua` | Rewards, creation cost, Discord webhook |
 | `locales/*.json` | Translations |

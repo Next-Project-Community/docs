@@ -6,7 +6,7 @@ sidebar_position: 4
 
 `next_deliveries` exposes server exports so other resources can inject delivery missions.
 
-## Available exports
+## Exports
 
 ### `CreateMission` / `AddMission`
 
@@ -64,6 +64,8 @@ local ok, result = exports['next_deliveries']:CompleteMission(missionId)
 ---
 
 ## Payload
+
+Use the following payload format when creating API-driven missions:
 
 ```lua
 {
