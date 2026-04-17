@@ -18,13 +18,13 @@ After purchase, the resource is available from your **CFX portal**: [portal.cfx.
 2. Go to **Granted Assets** and locate `next_gas_stations`
 3. Download the archive and extract it into your `resources` folder:
 
-`
+```text
 resources/
   next_gas_stations/
     fxmanifest.lua
     config.lua
     ...
-`
+```
 
 :::caution
 The folder must be named **`next_gas_stations`** (with underscore).
@@ -39,14 +39,14 @@ import TabItem from '@theme/TabItem';
 
 <Tabs>
   <TabItem value="qbox" label="Qbox / QboxCore" default>
-    `ash
+    ```bash
     git clone https://github.com/Destructor/ox_fuel ox_fuel
-    `
+    ```
   </TabItem>
   <TabItem value="qbcore" label="QBCore">
-    `ash
+    ```bash
     git clone https://github.com/Destructor/qb-fuel qb-fuel
-    `
+    ```
   </TabItem>
 </Tabs>
 
@@ -56,7 +56,7 @@ Table creation is **automatic** if `Database.AutoCreateTables = true` (enabled b
 
 ## 5. Add to `server.cfg`
 
-`cfg
+```cfg
 ensure ox_lib
 ensure oxmysql
 ensure next_deliveries   # required if delivery integration is enabled
@@ -66,7 +66,7 @@ ensure next_gas_stations
 ensure ox_fuel   # Qbox
 # OR
 ensure qb-fuel   # QBCore
-`
+```
 
 ## 6. Configure
 
