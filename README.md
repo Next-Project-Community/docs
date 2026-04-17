@@ -26,6 +26,14 @@ This command generates static content into the `build` directory and can be serv
 
 ## Deployment
 
+GitHub Actions deployment is configured in `.github/workflows/deploy-gh-pages.yml`.
+Each push to `main` builds the site and publishes the generated `build` output through the official GitHub Pages Actions pipeline.
+
+Before using it, configure GitHub Pages in the repository settings:
+
+1. Open `Settings > Pages`.
+2. Set the source to `GitHub Actions`.
+
 Using SSH:
 
 ```bash
@@ -40,4 +48,4 @@ set GIT_USER=<Your GitHub username>
 npm run deploy
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+If you use the GitHub Actions workflow above, you do not need the manual `npm run deploy` flow.
